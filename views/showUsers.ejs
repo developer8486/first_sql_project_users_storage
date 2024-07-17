@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>usrs lists</title>
+</head>
+<style>
+    td , th {
+        border: solid 2px lightgrey;
+    }
+    </style>
+
+<body>
+    <h1>the  total number of users are ::<%= users.length %></h1>
+    <form method="post" action="/users/newuser">
+        <button>join us today!!!</button>
+    </form>
+<br>
+<br>
+
+    <table >
+        <tr>
+            <th >ID</th>
+            <th >EMAIL</th>
+            <th >USER NAME</th>
+            <!--<th>PASSWORD</th>-->
+            <th colspan="2"> ACTIONS </th>
+        </tr>
+        <% for (user of users){ %>
+            <tr>
+                <td><%= user.id%></td>
+                <td><%= user.email%></td>
+                <td><%= user.username%></td>
+                <!--<td><%= user.password%></td>-->
+                <td>
+                    <form method="GET" action="/users/<%=user.id%>/edit">
+                        <button>Edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="/users/<%=user.id%>/?_method=DELETE">
+                        <button>delete</button>
+                    </form>
+                </td>
+            </tr> 
+        <% } %>
+        
+    </table>
+</body>
+</html>
+
